@@ -28,7 +28,7 @@ $JSKK.Class.create
 			
 			this.map=new gopher.Map();
 			
-			this.initFacebook();
+//			this.initFacebook();
 		},
 		bindEvents: function()
 		{
