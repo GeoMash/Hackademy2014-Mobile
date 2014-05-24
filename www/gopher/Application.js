@@ -18,7 +18,7 @@ $JSKK.Class.create
 		{
 			this.bindEvents();
 			$('[data-role="header"], [data-role="footer"]').toolbar({theme:'b'});
-			$('[data-role="panel"]').panel();
+			$('[data-role="panel"]').panel().enhanceWithin();
 			
 			
 			

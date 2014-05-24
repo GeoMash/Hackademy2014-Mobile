@@ -1,43 +1,34 @@
 <!DOCTYPE html> 
 <html>
 <head>
-    <title>new task assigned</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>new task</title>
+`    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/vendor/jquery/jquery.js"></script>
+    <script src="js/vendor/jquery/mobile.js"></script>
 </head>
 
 <body>
-
 <div data-role="page">
-
-    <div data-role="header">
-        <h1>You received a new task!</h1>
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content">
-        <p>
-            <div class="ui-body ui-body-a ui-corner-all">
-                <p>Task description goes here</p>
-            </div>
-        </p>
-        <p>
-            <a href="#acceptTask" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Accept</a>
-            <a href="#declineTask" data-rel="popup" data-position-to="window" class="ui-btn ui-shadow ui-corner-all ui-btn-inline" data-transition="pop">Decline</a>
-            <div data-role="popup" id="declineTask" data-theme="a" class="ui-corner-all">
-                    <form>
-                    <div style="padding:10px 20px;">
-                        <h3>Please provide a reason:</h3>
-                        <textarea name="declineTaskTextarea" id="declineTaskTextarea"></textarea>
-                        <button type="submitReason" id="submitReason" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Decline request</button>
-                    </div>
-                </form>
-            </div>
-        </p>
-    </div><!-- /content -->
-
-</div><!-- /page -->
-
+	<h2>You received a new task!</h2>
+	<div class="ui-body ui-body-a ui-corner-all">
+		<p>
+			Task description goes here.
+		</p>
+	</div>
+	<a href="#accept"  class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a">Accept</a>
+	<a href="#decline" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-transition="pop">Decline</a>
+	<div data-role="popup" id="decline" data-theme="a" class="ui-corner-all">
+		<form>
+			<div style="padding:10px 20px;">
+				<p>
+					<label for="reason">Please provide a reason:</label>
+					<textarea type="search" name="reason" id="reason" data-theme="a"></textarea>
+				</p>
+				<button type="submitRequest" id="submitRequest" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Decline task</button>
+			</div>
+		</form>
+	</div>
+</div>
 </body>
 </html>
