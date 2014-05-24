@@ -23,19 +23,18 @@ $JSKK.Class.create
 			$( document ).on
 			(
 				'swipeleft swiperight',
-				'#demo-page',
 				function(event)
 				{
 					if ($('.ui-page-active').jqmData('panel')!=='open')
 					{
-						if (e.type==='swipeleft')
+						if (event.type==='swipeleft')
 						{
-							$('#right-panel').panel('open');
+							$('#navPanel').panel('open');
 						}
-						else if (e.type==='swiperight')
-						{
-							$('#left-panel').panel('open');
-						}
+//						else if (event.type==='swiperight')
+//						{
+//							$('#left-panel').panel('open');
+//						}
 					}
 				}
 			);
