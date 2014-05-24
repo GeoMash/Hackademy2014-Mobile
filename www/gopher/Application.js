@@ -17,7 +17,7 @@ $JSKK.Class.create
 		onReady: function()
 		{
 			$('[data-role="header"], [data-role="footer"]').toolbar({theme:'b'});
-			$('[data-role="panel"]').panel();
+			$('[data-role="panel"]').panel().enhanceWithin();
 			
 			
 			$( document ).on

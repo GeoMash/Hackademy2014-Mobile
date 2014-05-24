@@ -38,6 +38,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta metus ac nunc placerat congue. Donec non mauris vel nisi tristique iaculis. Nunc dui justo, semper quis tincidunt ut, pellentesque quis dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis dignissim massa quis orci feugiat imperdiet. Nunc eget suscipit orci. Aenean nec augue rhoncus, porta ligula in, pellentesque risus. Praesent ut enim non lacus posuere varius. Morbi in dapibus ante. Ut ornare convallis urna, et fringilla diam consectetur vitae. Proin iaculis elementum dolor, interdum blandit mauris rhoncus in. In pellentesque mi nibh, sed eleifend ante tincidunt et.</p>
 					<p>Nullam eget elit ut quam luctus ultricies ac id dui. Praesent eros velit, egestas a vehicula a, consectetur ut felis. Praesent at risus convallis, sagittis sem et, egestas dui. Quisque ultricies augue libero, vitae pellentesque purus egestas eget. Integer adipiscing nisl in augue faucibus pellentesque. Ut sodales massa ipsum, eget convallis nunc sagittis vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
 					<p><a href="map.html">Can haz map?</a></p>
+
 				</div>
 			</div>
 <!-- 			<div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
@@ -54,13 +55,22 @@
 		
 		
 		<!-- NAV PANEL -->
-		<div data-role="panel" id="navPanel" data-position="right" data-display="overlay" data-theme="b">
-				<ul id='navpanel'>
-					<li><a href="profile.html" data-icon="cogs">My Profile</a></li>
-					<li><a href="preferences.html" data-icon="map-marker">Preferences</a></li>
-					<li><a href="payments.html" data-icon="share-alt">Payment Settings</a></li>
-					<li><a href="history.html" data-icon="share-alt">History</a></li>
-				</ul>
+		<div data-role="content">
+			<div data-role="panel" id="navPanel" data-position="right" data-display="overlay" data-theme="b">
+					<ul data-role="listview" data-inset="true">
+						<li><a href="#"><img src="../_assets/img/gf.png" alt="My Profile" class="ui-li-icon ui-corner-none">My Profile</a></li>
+						<li><a href="#"><img src="../_assets/img/de.png" alt="Preferences" class="ui-li-icon">Preferences</a></li>
+						<li><a href="#"><img src="../_assets/img/gb.png" alt="Payments" class="ui-li-icon">Payments</a></li>
+						<li><a href="#"><img src="../_assets/img/fi.png" alt="History" class="ui-li-icon">History</a></li>
+					</ul>
+				</div>
+	<!-- 				<ul id='navpanel'>
+						<li><a href="profile.html" data-icon="cogs">My Profile</a></li>
+						<li><a href="preferences.html" data-icon="map-marker">Preferences</a></li>
+						<li><a href="payments.html" data-icon="share-alt">Payment Settings</a></li>
+						<li><a href="history.html" data-icon="share-alt">History</a></li>
+					</ul> -->
+			</div>
 		</div>
 	</body>
 </html>
