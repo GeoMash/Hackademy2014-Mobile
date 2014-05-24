@@ -116,7 +116,7 @@ $JSKK.Class.create
 						markersLayer
 					],
 //					renderer: 	'webgl',
-					target: document.getElementById('map'),
+					target: $('#map')[0],
 					view: new ol.View2D
 					(
 						{
@@ -132,8 +132,12 @@ $JSKK.Class.create
 		},
 		updateMapSize: function ()
 		{
-			var container	=document.getElementById('#map'),
+			var container	=$('#map'),
 				height		=$(window).height()-$('#header').height()-1;
+			if (!container)
+			{
+				return;
+			}
 			(function()
 			{
 				var width=$(window).width();
