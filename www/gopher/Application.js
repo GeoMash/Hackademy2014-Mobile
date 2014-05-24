@@ -12,7 +12,7 @@ $JSKK.Class.create
 	{
 		init: function()
 		{
-			alert('Hello Gopher :)');
+			
 		}
 	}
 );
