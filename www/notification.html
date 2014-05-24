@@ -1,78 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-	<head>
-		<title>jQuery Notification</title>
-
-		<style type="text/css">
-			BODY {
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 12px;
-				line-height: 1.5;
-				padding: 10px 30px;
-			}
-		</style>
-
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-
-		<script type="text/javascript" src="jquery.notification.js"></script>
-		<link type="text/css" rel="stylesheet" href="jquery.notification.css" />
-
-		<script type="text/javascript">
-
-			$(document).ready( function() {
-
-				$('.notify').click( function() {
-					$.notification($('INPUT[name=message]').val(), {
-						duration: parseInt($('INPUT[name=duration]').val()),
-						freezeOnHover: $('INPUT[name=freezeOnHover]').prop('checked'),
-						hideSpeed: parseInt($('INPUT[name=hideSpeed]').val()),
-						position: $(this).attr('id'),
-						showSpeed: parseInt($('INPUT[name=showSpeed]').val())
-					});
-				});
-
-			});
-
-		</script>
-
-	</head>
-
-	<body>
-
-		<h1>jQuery Notification Demo</h1>
-
-		<p>
-			Select a button to trigger a notification at the respective screen location:
-		</p>
-
-		<table>
-			<tbody>
-				<tr>
-					<td><input type="button" id="top-left" class="notify" /></td>
-					<td><input type="button" id="top" class="notify" /></td>
-					<td><input type="button" id="top-right" class="notify" /></td>
-				</tr>
-				<tr>
-					<td><input type="button" id="left" class="notify" /></td>
-					<td><input type="button" id="center" class="notify" /></td>
-					<td><input type="button" id="right" class="notify" /></td>
-				</tr>
-				<tr>
-					<td><input type="button" id="bottom-left" class="notify" /></td>
-					<td><input type="button" id="bottom" class="notify" /></td>
-					<td><input type="button" id="bottom-right" class="notify" /></td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3>Settings</h3>
-		<p><input type="text" size="30" name="message" value="This is a notification!" /></p>
-		<p><input type="text" size="4" name="duration" value="2000" /> Duration</p>
-		<p><input type="text" size="4" name="showSpeed" value="250" /> Show Speed</p>
-		<p><input type="text" size="4" name="hideSpeed" value="250" /> Hide Speed</p>
-		<p><label><input type="checkbox" name="freezeOnHover"> Freeze on hover</label></p>
-
-	</body>
-
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery Mobile - List View with text formatting</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <ul data-role="listview">
+        <li data-role="list-divider">
+            Spatial Unlimited
+            <div class="ui-li-count">158</div>
+        </li>
+        <li>
+            <a href="http://shreerangpatwardhan.blogspot.com">
+                <h3>Author: Shreerang Patwardhan</h3>
+                <p><b>Description:</b> Spatial Unlimited is a Tech blog where, examples using Google Maps API v3 and Jquery Mobile are shared. I have tried to give back to the developer community as much as I can.</p>
+                <p class="ui-li-aside">Last update: April 9, 2013</p>
+            </a>
+        </li>
+        <li>
+            <a href="http://www.facebook.com/SpatialUnlimited">
+                <h3>Spatial Unlimited on Facebook</h3>
+                <p id="no-ellipsis">You can like Spatial Unlimited on Facebook and stay updated with the latest articles that I post on my blog.</p>
+            </a>
+        </li>
+    </ul>
+</body>
 </html>
