@@ -16,11 +16,16 @@ $JSKK.Class.create
 		},
 		onReady: function()
 		{
+			this.bindEvents();
 			$('[data-role="header"], [data-role="footer"]').toolbar({theme:'b'});
 			$('[data-role="panel"]').panel();
 			
 			
-			$( document ).on
+			
+		},
+		bindEvents: function()
+		{
+			$(document).on
 			(
 				'swipeleft swiperight',
 				function(event)
