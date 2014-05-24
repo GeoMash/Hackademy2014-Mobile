@@ -32,23 +32,23 @@ requirejs.config
 requirejs
 (
 	[
-		'js/facebook-js-sdk.js',
-		'js/cdv-plugin-fb-connect.js',
-		'i18next/i18next',
+//		'js/facebook-js-sdk.js',
+//		'js/cdv-plugin-fb-connect.js',
+//		'i18next/i18next',
 		'jquery/jquery',
 		'openlayers/ol',
 		'JSKK',
-		'fastclick/fastclick',
-		'momentjs/moment'
+		'fastclick/fastclick'//,
+//		'momentjs/moment'
 	],
 	function(i18n)
 	{
+//		window.i18n=i18n;
 		var requires=['jquery/mobile'];
 		if (Object.isDefined(window.WScript))
 		{
 			requires.push('js/cordova.js');
 		}
-		window.i18n=i18n;
 		requirejs
 		(
 			requires,
