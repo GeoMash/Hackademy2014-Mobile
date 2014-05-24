@@ -11,11 +11,13 @@ $JSKK.Class.create
 )
 (
 	{
-		
+		USER_TYPE_STANDARD:	1,
+		USER_TYPE_OPERATOR:	2
 	},
 	{
 		stepCounter: 0,
-		map:	null,
+		map:		null,
+		userType:	null,
 		init: function()
 		{
 			$(this.onReady.bind(this));
@@ -33,6 +35,11 @@ $JSKK.Class.create
 			
 			this.map=new gopher.Map();
 			
+			if (navigator.splashscreen)
+			{
+				navigator.splashscreen.hide();
+			}
+			this.selectUserType();
 //			this.initFacebook();
 		},
 		bindEvents: function()
@@ -82,51 +89,53 @@ $JSKK.Class.create
 			$('#location').val('');
 			this.stepCounter++;
 		},
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		selectUserType: function()
+		{
+			$('body').simpledialog2
+			(
+				{
+					mode:		'button',
+					headerText:	'Select User Type',
+					buttons:
+					{
+						'Standard User':
+						{
+							icon: 'user',
+							click: function()
+							{
+								this.setUserType(this.$reflect('self').USER_TYPE_STANDARD);
+							}.bind(this)
+						},
+						'Operator':
+						{
+							icon: 'navigation',
+							click: function()
+							{
+								this.setUserType(this.$reflect('self').USER_TYPE_OPERATOR);
+							}.bind(this)
+						}
+					}
+				}
+			);
+		},
+		setUserType: function(type)
+		{
+			this.userType=type;
+			switch (type)
+			{
+				case this.$reflect('self').USER_TYPE_OPERATOR:
+				{
+					$('[data-role="header"] [data-icon="plus"]').hide();
+					break;
+				}
+				case this.$reflect('self').USER_TYPE_STANDARD:
+				{
+					$('[data-role="header"] [data-icon="plus"]').show();
+					break;
+				}
+			}
+			return this;
+		},
 		initFacebook: function()
 		{
 			FB.init

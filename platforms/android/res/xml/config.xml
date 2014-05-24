@@ -5,9 +5,13 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
-    <name>Gopher</name>
-    <description>Gopher - By GeoMash</description>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+    </feature>
+    <name>OK Lah</name>
+    <description>OK Lah - By GeoMash</description>
     <author email="gopher@geomash.com" href="http://gopher.geomash.com">Gopher</author>
     <content src="index.html" />
     <access origin="*" />
+    <preference name="SplashScreen" value="splash" />
 </widget>
