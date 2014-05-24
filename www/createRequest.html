@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>Create a new request</title>
+`    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <script src="js/vendor/jquery/jquery.js"></script>
+    <script src="js/vendor/jquery/mobile.js"></script>
+</head>
+
+<body>
+<div data-role="page">
+	<a href="#newRequest" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-transition="pop">New request</a>
+	<div data-role="popup" id="newRequest" data-theme="a" class="ui-corner-all">
+		<form>
+			<div style="padding:10px 20px;">
+				<h3>Enter the task details</h3>
+				<p>
+					<label for="pointOfOrigin">Point of origin:</label>
+					<input type="search" name="pointOfOrigin" id="pointOfOrigin" value="" placeholder="Type an address" data-theme="a">
+				</p>
+				<p>
+					<label for="taskDescription">Please provide a description of the task:</label>
+					<textarea id="taskDescription"></textarea>
+				</p>
+					<div class="ui-grid-d center">
+						<a href="#addWayPoint" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-icon-plus ui-btn-icon-left" data-transition="pop">Add way point</a>
+						<div data-role="popup" id="addWayPoint" data-theme="a" class="ui-corner-all">
+							<form>
+								<p>
+									<label for="wayPoint">Way point location:</label>
+									<input type="search" name="wayPoint" id="wayPoint" value="" placeholder="Type an address" data-theme="a">
+								</p>
+								<p>
+									<label for="wayPointDescription">Way point task:</label>
+									<textarea id="wayPointDescription"></textarea>
+								</p>
+							</form>
+						</div>	
+					</div>
+				<p>
+					<label for="finalPoint">Final point:</label>
+					<input type="search" name="finalPoint" id="finalPoint" value="" placeholder="Type an address" data-theme="a">
+				</p>
+				<button type="submitRequest" id="submitRequest" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Submit request</button>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+</html>
