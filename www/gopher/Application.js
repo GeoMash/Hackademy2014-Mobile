@@ -21,6 +21,7 @@ $JSKK.Class.create
 		},
 		onReady: function()
 		{
+			FastClick.attach(document.body);
 			this.bindEvents();
 			$('[data-role="header"], [data-role="footer"]').toolbar({theme:'b'});
 			$('[data-role="panel"]').panel().enhanceWithin();
