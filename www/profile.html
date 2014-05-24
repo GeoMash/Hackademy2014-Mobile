@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>JQM latest</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/git/jquery.mobile-git.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script>
+    </head>
+    
+    <body>
+        <!-- Page 1 -->
+        <div data-role="page" id="p1">
+            <div data-role="header" data-position="fixed">
+                 <h1>Header - Page 1</h1>
+
+            </div>
+            <div data-role="content"></div>
+            <div data-role="footer" data-position="fixed">
+                 <h1>Footer</h1>
+
+            </div>
+        </div>
+        <!-- Page 2 -->
+        <div data-role="page" id="p2">
+            <div data-role="popup" id="about" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:300px;" class="ui-corner-all" data-history="false">
+                <div data-role="header" class="ui-header ui-bar-c">
+                     <h1>About Author</h1>
+
+                </div>
+                <div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+                    <p>Demonstration was created by <b>Omar</b> for <a href="#">StackOverflow.com</a>.
+                        <br/>
+                        <br/>For more examples on jQuery Mobile, click the button below.</p>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="width: 85%"><a href="http://stackoverflow.com/users/1771795/omar" data-role="button" data-theme="c" data-icon="star" target="_blank">Profile</a>
+
+                        </div>
+                        <div class="ui-block-b" style="width: 15%; margin-top:9px"><a href="#" data-role="button" data-icon="delete" data-iconpos="notext" data-rel="back">Close</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="header" data-position="fixed"> <a href="#about" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="flip" data-icon="info" data-theme="b">About</a>
+
+                 <h1>Header - Page 2</h1>
+
+            </div>
+            <div data-role="content"></div>
+            <div data-role="footer" data-position="fixed">
+                 <h1>Footer</h1>
+
+            </div>
+        </div>
+    </body>
+
+</html>
