@@ -95,6 +95,17 @@ $JSKK.Class.create
 		setUserType: function(type)
 		{
 			this.userType=type;
+			switch (type)
+			{
+				case this.$reflect('self').USER_TYPE_OPERATOR:
+				{
+					$('[data-role="header"] [data-icon="plus"]').hide();
+				}
+					case this.$reflect('self').USER_TYPE_STANDARD:
+				{
+					$('[data-role="header"] [data-icon="plus"]').show();
+				}
+			}
 			return this;
 		},
 		initFacebook: function()
