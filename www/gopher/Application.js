@@ -30,8 +30,8 @@ $JSKK.Class.create
 			$('[data-role="panel"]').panel().enhanceWithin();
 			
 			
-			$('[data-role="header"] [data-icon="plus"]').css('right','45px');
-			$('[data-role="header"] [data-icon]').css('top','12px');
+			$('[data-role="header"] [data-icon="plus"]').css('right','45px').hide();
+			$('[data-role="header"] [data-icon]').css('top','12px').hide();
 			
 			this.map=new gopher.Map();
 			
@@ -68,6 +68,7 @@ $JSKK.Class.create
 				'click',
 				this.onAndThen.bind(this)
 			);
+			$.mobile.document.on('pagechange',this.onPageChange.bind(this));
 		},
 		onAndThen: function(event)
 		{
@@ -126,16 +127,51 @@ $JSKK.Class.create
 				case this.$reflect('self').USER_TYPE_OPERATOR:
 				{
 					$('[data-role="header"] [data-icon="plus"]').hide();
+					$('[data-role="header"] [data-icon="bars"]').show();
 					break;
 				}
 				case this.$reflect('self').USER_TYPE_STANDARD:
 				{
 					$('[data-role="header"] [data-icon="plus"]').show();
+					$('[data-role="header"] [data-icon="bars"]').show();
 					break;
 				}
 			}
 			return this;
 		},
+		
+		onPageChange: function(event,info)
+		{
+			switch (info.toPage.attr('id'))
+			{
+				case 'page-notifications':
+				{
+					this.loadNotificaitons();
+					break;
+				}
+			}
+		},
+		loadNotificaitons: function()
+		{
+			$.getJSON
+			(
+				'http://hack.dev.lan/notification/getByUserId/testUser1',
+				function(response)
+				{
+					console.debug(response);
+				}
+			);
+		},
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		initFacebook: function()
 		{
 			FB.init
