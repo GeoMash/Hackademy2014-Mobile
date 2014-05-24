@@ -35,7 +35,13 @@ $JSKK.Class.create
 			var tileLayer = new ol.layer.Tile
 			(
 				{
-					source: new ol.source.XYZ({url:'http://maptile.maps.svc.ovi.com/maptiler/maptile/newest/normal.day/{z}/{x}/{y}/256/png8'})
+					source: new ol.source.XYZ
+					(
+						{
+							url:			'http://maptile.maps.svc.ovi.com/maptiler/maptile/newest/normal.day/{z}/{x}/{y}/256/png8',
+							crossOrigin:	'anonymous'
+						}
+					)
 				}
 			);
 			var userStyle = new ol.style.Style
@@ -109,6 +115,7 @@ $JSKK.Class.create
 						tileLayer,
 						markersLayer
 					],
+//					renderer: 	'webgl',
 					target: document.getElementById('map'),
 					view: new ol.View2D
 					(
