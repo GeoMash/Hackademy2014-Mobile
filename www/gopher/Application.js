@@ -12,7 +12,11 @@ $JSKK.Class.create
 	{
 		init: function()
 		{
-			
+			$(this.onReady.bind(this));
+		},
+		onReady: function()
+		{
+			$("[data-role='header'], [data-role='footer']").toolbar({theme:'b'});
 		}
 	}
 );
