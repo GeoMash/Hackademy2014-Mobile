@@ -1,8 +1,9 @@
+console.debug('foo');
 requirejs.config
 (
 	{
 		waitSeconds:	10,
-		baseUrl:		'/',
+		baseUrl:		'',
 		paths:
 		{
 			//RequireJS Plugins
@@ -15,7 +16,7 @@ requirejs.config
 			JSKK:				'js/vendor/jskk/jskk.1.1.0.min',
 			fastclick:			'js/vendor/fastclick',
 			momentjs:			'js/vendor/momentjs',
-			here:				'js/vendor/http://js.api.here.com/se/2.5.3/jsl',
+			here:				'http://js.api.here.com/se/2.5.3/jsl',
 			
 			gopher:				'gopher'
 		},
