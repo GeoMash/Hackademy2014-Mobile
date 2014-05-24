@@ -134,7 +134,6 @@ $JSKK.Class.create
 		{
 			var container	=document.getElementById('#map'),
 				height		=$(window).height()-$('#header').height()-1;
-			container.height(height);
 			(function()
 			{
 				var width=$(window).width();
