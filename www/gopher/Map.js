@@ -12,7 +12,6 @@ $JSKK.Class.create
 	{
 		init: function(userCoordinates)
 		{
-			console.log('init map');
 			if(Object.isUndefined(userCoordinates))
 			{
 				userCoordinates= [101.674954, 3.124158];	
@@ -20,7 +19,13 @@ $JSKK.Class.create
 			var tileLayer = new ol.layer.Tile
 			(
 				{
-					source: new ol.source.XYZ({url:'http://maptile.maps.svc.ovi.com/maptiler/maptile/newest/normal.day/{z}/{x}/{y}/256/png8'})
+					source: new ol.source.XYZ
+					(
+						{
+							url:			'http://maptile.maps.svc.ovi.com/maptiler/maptile/newest/normal.day/{z}/{x}/{y}/256/png8',
+							crossOrigin:	'anonymous'
+						}
+					)
 				}
 			);
 			var userMarker =new ol.Feature
@@ -57,7 +62,6 @@ $JSKK.Class.create
 					source: markersSource
 				}
 			);
-			console.debug('marker', userMarker);
 			var map = new ol.Map
 			(
 				{
@@ -66,20 +70,20 @@ $JSKK.Class.create
 						tileLayer,
 						markersLayer
 					],
+//					renderer: 	'webgl',
 					target: document.getElementById('map'),
 					view: new ol.View2D
 					(
 						{
-						center: ol.proj.transform(userCoordinates, 'EPSG:4326', 'EPSG:3857'),
-						zoom: 16,
-						minZoom: 3,
-						maxZoom: 18	
+							center: ol.proj.transform(userCoordinates, 'EPSG:4326', 'EPSG:3857'),
+							zoom: 16,
+							minZoom: 3,
+							maxZoom: 18	
 						}
 					),
 					controls: []
 				}
 			);
-			console.debug(markersLayer.getVisible());
 		},
 		bindEvents: function()
 		{
