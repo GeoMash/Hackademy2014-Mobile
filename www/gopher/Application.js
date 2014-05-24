@@ -27,6 +27,9 @@ $JSKK.Class.create
 			$('[data-role="panel"]').panel().enhanceWithin();
 			
 			
+			$('[data-role="header"] [data-icon="plus"]').css('right','45px');
+			$('[data-role="header"] [data-icon]').css('top','12px');
+			
 			this.map=new gopher.Map();
 			
 //			this.initFacebook();

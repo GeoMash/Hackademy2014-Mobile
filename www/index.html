@@ -10,11 +10,12 @@
  -->
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.min.css" />
 		<link rel="stylesheet" type="text/css" href="less/main.css" />
-        <link rel="stylesheet" href="theme/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="theme/css/jquerymobile.nativedroid.css" />
+        <!--<link rel="stylesheet" href="theme/css/font-awesome.min.css" />-->
+		
+		<!--<link rel="stylesheet" href="theme/css/jquerymobile.nativedroid.css" />-->
 
-		<!-- nativeDroid: Light/Dark -->
-        <link rel="stylesheet" href="theme/css/jquerymobile.nativedroid.dark.css" />
+		<!--&lt;!&ndash; nativeDroid: Light/Dark &ndash;&gt;-->
+        <!--<link rel="stylesheet" href="theme/css/jquerymobile.nativedroid.dark.css" />-->
 
 		<!-- nativeDroid: Color Schemes -->
         <link rel="stylesheet" href="theme/css/jquerymobile.nativedroid.color.blue.css" />
@@ -25,7 +26,9 @@
 		<!-- HEADER -->
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
 			<img src="theme/images/logo.png" alt="OK Lah">
-			<a href="#navPanel" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right ui-shadow ui-corner-all hamburger" >&nbsp;</a>
+			<a href="#navPanel" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon ui-btn-right"></a>
+			<a href="#add" data-icon="plus" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon ui-btn-right"></a>
+			<!--<a href="#navPanel" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right ui-shadow ui-corner-all hamburger" >&nbsp;</a>-->
 		</div>
 		
 		<!-- PAGE CONTENT -->
@@ -39,7 +42,7 @@
 		<div data-role="content">
 			<div data-role="panel" id="navPanel" data-position="right" data-display="overlay" data-theme="b">
 					<ul data-role="listview" data-inset="true">
-						<li><a href="#"><img src="theme/images/notifications.png" alt="Notifications" class="ui-li-icon">Notifications</a></li>
+						<li><a href="notifications.html"><img src="theme/images/notifications.png" alt="Notifications" class="ui-li-icon">Notifications</a></li>
 						<li><a href="#"><img src="theme/images/profile.png" alt="My Profile" class="ui-li-icon ui-corner-none">My Profile</a></li>
 						<li><a href="#"><img src="theme/images/preferences.png" alt="Preferences" class="ui-li-icon">Preferences</a></li>
 						<li><a href="#"><img src="theme/images/payment.png" alt="Payments" class="ui-li-icon">Payments</a></li>
