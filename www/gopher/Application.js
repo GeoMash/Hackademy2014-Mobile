@@ -2,7 +2,11 @@ $JSKK.Class.create
 (
 	{
 		$namespace:	'gopher',
-		$name:		'Application'
+		$name:		'Application',
+		$requires:
+		[
+			'gopher.Map'
+		]
 	}
 )
 (
@@ -10,6 +14,7 @@ $JSKK.Class.create
 		
 	},
 	{
+		map:	null,
 		init: function()
 		{
 			$(this.onReady.bind(this));
@@ -21,13 +26,14 @@ $JSKK.Class.create
 			$('[data-role="panel"]').panel().enhanceWithin();
 			
 			
-			
+			this.map=new gopher.Map();
 		},
 		bindEvents: function()
 		{
 			$(document).on
 			(
 				'swipeleft swiperight',
+				'[data-role="header"]',
 				function(event)
 				{
 					if ($('.ui-page-active').jqmData('panel')!=='open')
