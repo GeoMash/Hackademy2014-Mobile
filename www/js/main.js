@@ -56,7 +56,11 @@ requirejs
 	function(i18n)
 	{
 //		window.i18n=i18n;
-		var requires=['jquery/mobile'];
+		var requires=
+		[
+			'jquery/mobile',
+			'jquery/simpledialog'
+		];
 		if (Object.isDefined(window.WScript))
 		{
 			requires.push('js/cordova.js');
