@@ -14,6 +14,7 @@ $JSKK.Class.create
 		
 	},
 	{
+		stepCounter: 0,
 		map:	null,
 		init: function()
 		{
@@ -53,9 +54,79 @@ $JSKK.Class.create
 //							$('#left-panel').panel('open');
 //						}
 					}
-				}
+				}	
+			);
+			$('#andThen').on
+			(
+				'click',
+				this.onAndThen.bind(this)
 			);
 		},
+		onAndThen: function(event)
+		{
+			event.preventDefault();
+//			console.debug($(event.target.form[1]).val());
+			var address = $(event.target.form[0]).val();
+			var description = $(event.target.form[1]).val();
+			$('#requestForm').append
+			(
+				[
+					"<div data-role=\"collapsible\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\">",
+						"<h4>",address,"</h4>",
+						"<p>",description,"</p>",
+					"</div>"
+				].join("")
+			);
+			$('#collapsible'+this.stepCounter ).collapsible({ collapsed: true });
+			$('#description').val('');
+			$('#location').val('');
+			this.stepCounter++;
+		},
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		initFacebook: function()
 		{
 			FB.init
@@ -128,5 +199,6 @@ $JSKK.Class.create
 				}
 			);
 		}
+		
 	}
 );
