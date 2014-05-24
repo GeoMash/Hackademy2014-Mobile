@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>new task assigned</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+</head>
+
+<body>
+
+<div data-role="page">
+
+    <div data-role="header">
+        <h1>Leave a feedback on the task</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <p>
+            <div id="rating" class="rating">
+                <fieldset data-role="controlgroup" datatype="horizontal" data-mini="true">
+                    <input type="radio" name="rating" value="0" checked />
+                    <input type="radio" name="rating" value="1" /><span></span>
+                    <input type="radio" name="rating" value="2" /><span></span>
+                    <input type="radio" name="rating" value="3" /><span></span>
+                    <input type="radio" name="rating" value="4" /><span></span>
+                    <input type="radio" name="rating" value="5" /><span></span>
+                </fieldset>
+            </div>
+        </p>
+        <p>
+            <label for="operatorNote">Leave a note:</label>
+        </p>
+        <p>
+            <textarea name="operatorNote" id="operatorNote"></textarea>
+        </p>
+    </div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>
