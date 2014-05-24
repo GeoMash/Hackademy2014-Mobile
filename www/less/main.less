@@ -11,6 +11,11 @@ body{
       background:#23252b;
   }
 
+.ui-panel-display-overlay
+{
+    z-index:    10000;
+}
+
 article #starRating {
     padding-left: 50px; /* arbitrary, to expose the "zero stars" area half a star to the left of the first star.*/
 }
@@ -133,4 +138,11 @@ label.rb10l:hover ~ .rating
 .ie8 .rating-bg,
 .ie8 .star-rating label.star {
     display: none;
+}
+
+.hamburger {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index:1;
 }
