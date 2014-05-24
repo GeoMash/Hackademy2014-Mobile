@@ -1,3 +1,15 @@
+//document.addEventListener
+//(
+//	'deviceready',
+//	function()
+//	{
+//		if (navigator.splashscreen)
+//		{
+//			navigator.splashscreen.show();
+//		}
+//	},
+//	false
+//);
 requirejs.config
 (
 	{

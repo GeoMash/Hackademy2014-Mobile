@@ -32,6 +32,10 @@ $JSKK.Class.create
 			
 			this.map=new gopher.Map();
 			
+			if (navigator.splashscreen)
+			{
+				navigator.splashscreen.hide();
+			}
 //			this.initFacebook();
 		},
 		bindEvents: function()
