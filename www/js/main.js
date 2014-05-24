@@ -58,8 +58,7 @@ requirejs
 //		window.i18n=i18n;
 		var requires=
 		[
-			'jquery/mobile',
-			'jquery/simpledialog'
+			'jquery/mobile'
 		];
 		if (Object.isDefined(window.WScript))
 		{
@@ -70,12 +69,19 @@ requirejs
 			requires,
 			function()
 			{
-				$JSKK.require
+				requirejs
 				(
-					'gopher.Application',
+					['jquery/simpledialog'],
 					function()
 					{
-						window.$application=new gopher.Application();
+						$JSKK.require
+					(
+						'gopher.Application',
+						function()
+						{
+							window.$application=new gopher.Application();
+						}
+					);
 					}
 				);
 			}
