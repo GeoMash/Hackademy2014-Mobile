@@ -139,7 +139,53 @@ $JSKK.Class.create
 				'http://hack.dev.lan/notification/getByUserId/'+this.getUserId(),
 				function(response)
 				{
-					console.debug(response);
+					if (response.success && Object.isArray(response.data))
+					{
+						var	container	=$('#page-notifications ul'),
+							newRow		=null,
+							record		=null;
+						
+						container.find('li:first .ui-li-count').html('Total: '+response.data.length);
+						for (var i= 0,j=response.data.length; i<j; i++)
+						{
+							record=response.data[i];
+							newRow=$
+							(
+								[
+									'<li>',
+										'<a href="#">',
+											'<h3>',record.title,'</h3>',
+											'<p><b>Description:</b> ',record.message,'</p>',
+											'<p class="ui-li-aside">',(record.read?'Read':'Unread'),'</p>',
+										'</a>',
+									'</li>'
+								].join('')
+							);
+							newRow.click
+							(
+								function(record,event)
+								{
+									event.preventDefault();
+									$('body').simpledialog2
+									(
+										{
+											mode:		'blank',
+											headerText:	'Details',
+											blankContent:
+											[
+												'<div role="main" class="ui-content">',
+													'<p><b>Step:</b> ',record.type.record.steps[record.step].properties.instruction,'</p>',
+													'<a rel="close" data-role="button" href="#">Close</a>',
+												'</div>'
+											].join('')
+										}
+									);
+								}.bind(this,record)
+							);
+							container.append(newRow);
+						}
+						container.listview();
+					}
 				}
 			);
 		},
