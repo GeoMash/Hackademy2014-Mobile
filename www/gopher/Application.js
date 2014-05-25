@@ -77,38 +77,72 @@ $JSKK.Class.create
 				this.createRequest.bind(this)
 			);
 		},
-		onAndThen: function(event)
+		onAndThen: function(event, close)
 		{
-			event.preventDefault();
-			this.steps[this.stepCounter] = 
-			{	
-				properties:
-				{	
-					address: $(event.target.form[0]).val(),
-					instruction: $(event.target.form[1]).val(),
-					status: 0
-				}	
-			}	
-			$('#requestForm').append
+			if(Object.isUndefined(close))
+			{
+				event.preventDefault();
+			}
+			var address = $(event.target.form[0]).val();
+			var description = $(event.target.form[1]).val();
+			var coordinates = [];
+
+			$.get
 			(
-				[
-					"<div data-role=\"collapsible\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\">",
-						"<h4>",$(event.target.form[0]).val(),"</h4>",
-						"<p>",$(event.target.form[1]).val(),"</p>",
-					"</div>"
-				].join("")
+				"http://maps.google.com/maps/api/geocode/json?address="+address.replace(' ', '+')+"&sensor=false&region=my", 
+				function(response)
+				{
+					console.debug(response);
+					var results = 
+					{
+						address: response.results[0].formatted_address,
+						coordinates: [response.results[0].geometry.location.lng, response.results[0].geometry.location.lat] 
+					}
+					if(Object.isString(results.address))
+					{
+						address=results.address;
+					}
+					coordinates = results.coordinates;
+					this.steps[this.stepCounter] = 
+					{	
+						GeoJSON:
+						{	
+							geometry: 
+							{
+								type:'Point',
+								coordinates: coordinates
+							},
+							properties:
+							{	
+								address: address,
+								instruction: description,
+								status: 0
+							}
+						}	
+					}	
+					$('#requestForm').append
+					(
+						[
+							"<div data-role=\"collapsible\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\">",
+								"<h4>",address,"</h4>",
+								"<p>",description,"</p>",
+							"</div>"
+						].join("")
+					);
+					$('#collapsible'+this.stepCounter ).collapsible({ collapsed: true });
+					$('#description').val('');
+					$('#location').val('');
+					this.stepCounter++;
+				}.bind(this)
 			);
-			$('#collapsible'+this.stepCounter ).collapsible({ collapsed: true });
-			$('#description').val('');
-			$('#location').val('');
-			this.stepCounter++;
+			console.debug(this.steps);
 		},
 		createRequest: function(event)
 		{
-			this.onAndThen(event);
+			this.onAndThen(event ,true);
 			var task = 
 			{
-				user_id: new Date().getTime(),
+				user_id: this.getUserId(),
 				steps: this.steps
 			};
 			$.post
