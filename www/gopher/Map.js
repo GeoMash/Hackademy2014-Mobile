@@ -11,6 +11,9 @@ $JSKK.Class.create
 	},
 	{
 		map: null,
+		
+		userMarker: null,
+		
 		operatorsCoordinates: 
 		[
 			[101.675948,3.118514],
@@ -81,7 +84,7 @@ $JSKK.Class.create
 					source: markersSource
 				}
 			);
-			var userMarker =new ol.Feature
+			this.userMarker =new ol.Feature
 			(
 				{
 					geometry: new ol.geom.Point
@@ -104,8 +107,8 @@ $JSKK.Class.create
 				);
 				operators[i].setStyle(operatorStyle);
 			}
-			userMarker.setStyle(userStyle);
-			markersSource.addFeature(userMarker);
+			this.userMarker.setStyle(userStyle);
+			markersSource.addFeature(this.userMarker);
 			markersSource.addFeatures(operators);
 			this.map = new ol.Map
 			(
@@ -128,6 +131,34 @@ $JSKK.Class.create
 					),
 					controls: []
 				}
+			);
+			if (navigator.geolocation)
+			{
+				navigator.geolocation.watchPosition
+				(
+					this.onUpdateUserPosition.bind(this),
+					$JSKK.emptyFunction,
+					{
+						maximumAge:			1000,
+						timeout:			5000,
+						enableHighAccuracy:	true
+					}
+				);
+			}
+		},
+		onUpdateUserPosition: function(position)
+		{
+			this.userMarker.getGeometry().setCoordinates
+			(
+				ol.proj.transform
+				(
+					[
+						position.coords.longitude,
+						position.coords.latitude
+					],
+					'EPSG:4326',
+					'EPSG:3857'
+				)
 			);
 		},
 		updateMapSize: function ()
