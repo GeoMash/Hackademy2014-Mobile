@@ -111,8 +111,7 @@ $JSKK.Class.create
 				user_id: new Date().getTime(),
 				steps: this.steps
 			};
-			console.debug(task);
-			$.getJSON
+			$.post
 			(
 				'http://hack.dev.lan/task/add',
 				task,
