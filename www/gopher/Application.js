@@ -15,6 +15,8 @@ $JSKK.Class.create
 		USER_TYPE_OPERATOR:	2
 	},
 	{
+		stepCounter: 0,
+		steps: [],
 		map:		null,
 		userType:	null,
 		userId:		null,
@@ -61,9 +63,64 @@ $JSKK.Class.create
 //							$('#left-panel').panel('open');
 //						}
 					}
-				}
+				}	
+			);
+			$('#andThen').on
+			(
+				'click',
+				this.onAndThen.bind(this)
 			);
 			$.mobile.document.on('pagechange',this.onPageChange.bind(this));
+			$('#finish').on
+			(
+				'click',
+				this.createRequest.bind(this)
+			);
+		},
+		onAndThen: function(event)
+		{
+			event.preventDefault();
+			this.steps[this.stepCounter] = 
+			{	
+				properties:
+				{	
+					address: $(event.target.form[0]).val(),
+					instruction: $(event.target.form[1]).val(),
+					status: 0
+				}	
+			}	
+			$('#requestForm').append
+			(
+				[
+					"<div data-role=\"collapsible\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\">",
+						"<h4>",$(event.target.form[0]).val(),"</h4>",
+						"<p>",$(event.target.form[1]).val(),"</p>",
+					"</div>"
+				].join("")
+			);
+			$('#collapsible'+this.stepCounter ).collapsible({ collapsed: true });
+			$('#description').val('');
+			$('#location').val('');
+			this.stepCounter++;
+		},
+		createRequest: function(event)
+		{
+			this.onAndThen(event);
+			var task = 
+			{
+				user_id: new Date().getTime(),
+				steps: this.steps
+			};
+			console.debug(task);
+			$.getJSON
+			(
+				'http://hack.dev.lan/task/add',
+				task,
+				function(response)
+				{
+					console.debug(response);
+				}
+			);
 		},
 		getUserId: function()
 		{
@@ -271,5 +328,6 @@ $JSKK.Class.create
 				}
 			);
 		}
+		
 	}
 );

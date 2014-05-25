@@ -27,7 +27,25 @@
 		<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
 			<img src="theme/images/logo.png" alt="OK Lah">
 			<a href="#navPanel" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon ui-btn-right"></a>
-			<a href="#add" data-icon="plus" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon ui-btn-right"></a>
+			<a href="#newRequest" data-rel="popup" data-position-to="window" data-transition="pop" data-icon="plus" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon ui-btn-right"></a>
+			<div data-role="popup" id="newRequest" data-theme="a" class="ui-corner-all">
+				<form>
+					<div id="requestForm" style="padding:10px 20px;">
+						<h3>Enter the task details</h3>
+						<p>
+							<label for="location">I need you to go to:</label>
+							<input type="search" name="location" id="location" value="" placeholder="Type an address" data-theme="a">
+						</p>
+						<p>
+							<label for="description">And:</label>
+							<textarea id="description" placeholder="Description of task..."></textarea>
+						</p>
+						<button id="andThen" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-plus ui-btn-inline">And then</button>
+						<button id="finish" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-check ui-btn-inline">Finish</button>
+						<!--<button type="submitRequest" id="submitRequest" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Submit request</button>-->
+					</div>
+				</form>
+			</div>
 			<!--<a href="#navPanel" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right ui-shadow ui-corner-all hamburger" >&nbsp;</a>-->
 		</div>
 		
