@@ -77,6 +77,19 @@ $JSKK.Class.create
 				'click',
 				this.createRequest.bind(this)
 			);
+			$('body').on
+			(
+				'click',
+				'#remove',
+				this.onRemove.bind(this)
+			);
+		},
+		onRemove: function(event)
+		{
+			event.preventDefault();
+			console.debug('#collapsible'+event.target.name);
+			$('#requestForm').removeChild(document.getElementById('collapsible'+event.target.name));
+			
 		},
 		onAndThen: function(event, close)
 		{
@@ -124,9 +137,12 @@ $JSKK.Class.create
 					$('#requestForm').append
 					(
 						[
-							"<div data-role=\"collapsible\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\">",
+							"<div class=\"ui-grid-a\">",
+							"<div class=\"ui-block-a\"><div data-role=\"collapsible\" style=\"width:90%\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\" data-inline=true>",
 								"<h4>",address,"</h4>",
 								"<p>",description,"</p>",
+							"</div></div>",
+							"<div class=\"ui-block-b\"><button id=\"remove\" name=",this.stepCounter," style=\"width:8%\" class=\"ui-btn ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-inline\">remove</button></div>",
 							"</div>"
 						].join("")
 					);
@@ -158,6 +174,25 @@ $JSKK.Class.create
 				{
 					console.debug(response);
 				}
+			);
+			$('#page').append
+			(
+				[
+					"<div data-role=\"popup\" id=\"thankYou\" data-theme=\"a\" class=\"ui-corner-all\">",
+						"<form>",
+							"<div id=\"requestForm\" style=\"padding:10px 20px;\">",
+								"<p>",
+									"Your request has been assigned to:	Mohd Khairul.<br>",
+									"He's driving a car with licence plate HWB54816.<br>",
+									"His contacts are:<br>",
+									"&nbrs;	phone number: +60 011 45897224<br>",
+									"&nbrs;	e-mail		: mohdh.khairul@gmail.com<br>",
+									"He will contact you shortly.",
+								"</p>",
+							"</div>",
+						"</form>",
+					"</div>"
+				].join("")
 			);
 		},
 		getUserId: function()
