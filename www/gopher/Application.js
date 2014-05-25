@@ -19,6 +19,7 @@ $JSKK.Class.create
 		steps: [],
 		map:		null,
 		userType:	null,
+		userId:		null,
 		init: function()
 		{
 			$(this.onReady.bind(this));
@@ -121,6 +122,10 @@ $JSKK.Class.create
 				}
 			);
 		},
+		getUserId: function()
+		{
+			return this.userId;
+		},
 		selectUserType: function()
 		{
 			$('body').simpledialog2
@@ -136,6 +141,7 @@ $JSKK.Class.create
 							click: function()
 							{
 								this.setUserType(this.$reflect('self').USER_TYPE_STANDARD);
+								this.userId='testUser1';
 							}.bind(this)
 						},
 						'Operator':
@@ -144,6 +150,7 @@ $JSKK.Class.create
 							click: function()
 							{
 								this.setUserType(this.$reflect('self').USER_TYPE_OPERATOR);
+								this.userId='testUser2';
 							}.bind(this)
 						}
 					}
@@ -186,7 +193,7 @@ $JSKK.Class.create
 		{
 			$.getJSON
 			(
-				'http://hack.dev.lan/notification/getByUserId/testUser1',
+				'http://hack.dev.lan/notification/getByUserId/'+this.getUserId(),
 				function(response)
 				{
 					console.debug(response);
