@@ -114,12 +114,12 @@ $JSKK.Class.create
 								coordinates: coordinates
 							},
 							properties:
-							{	
+							{
 								address: address,
 								instruction: description,
 								status: 0
 							}
-						}	
+						}
 					}	
 					$('#requestForm').append
 					(
