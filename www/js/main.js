@@ -50,8 +50,8 @@ requirejs
 		'jquery/jquery',
 		'openlayers/ol',
 		'JSKK',
-		'fastclick/fastclick'//,
-//		'momentjs/moment'
+		'fastclick/fastclick',
+		'momentjs/moment'
 	],
 	function(i18n)
 	{

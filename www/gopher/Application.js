@@ -15,6 +15,7 @@ $JSKK.Class.create
 		USER_TYPE_OPERATOR:	2
 	},
 	{
+		serverURL:	'http://hack.dev.lan/',
 		stepCounter: 0,
 		steps: [],
 		map:		null,
@@ -103,6 +104,10 @@ $JSKK.Class.create
 			$('#location').val('');
 			this.stepCounter++;
 		},
+		getServerURL: function()
+		{
+			return this.serverURL;
+		},
 		createRequest: function(event)
 		{
 			this.onAndThen(event);
@@ -113,7 +118,7 @@ $JSKK.Class.create
 			};
 			$.post
 			(
-				'http://hack.dev.lan/task/add',
+				this.getServerURL()+'task/add',
 				task,
 				function(response)
 				{
@@ -165,6 +170,7 @@ $JSKK.Class.create
 				{
 					$('[data-role="header"] [data-icon="plus"]').hide();
 					$('[data-role="header"] [data-icon="bars"]').show();
+					
 					break;
 				}
 				case this.$reflect('self').USER_TYPE_STANDARD:
@@ -186,13 +192,23 @@ $JSKK.Class.create
 					this.loadNotificaitons();
 					break;
 				}
+				case 'page-tasks':
+				{
+					this.loadTasks();
+					break;
+				}
+				case 'page-task-steps':
+				{
+					this.loadTaskSteps();
+					break;
+				}
 			}
 		},
 		loadNotificaitons: function()
 		{
 			$.getJSON
 			(
-				'http://hack.dev.lan/notification/getByUserId/'+this.getUserId(),
+				this.getServerURL()+'notification/getByUserId/'+this.getUserId(),
 				function(response)
 				{
 					if (response.success && Object.isArray(response.data))
@@ -245,8 +261,100 @@ $JSKK.Class.create
 				}
 			);
 		},
-		
-		
+		loadTasks: function()
+		{
+			var userId=this.getUserId();
+			$.getJSON
+			(
+				this.getServerURL()+'task/getByUserId/'+userId+'/'+(userId=='testUser1'?'requested':'assigned'),
+				function(response)
+				{
+					if (response.success && Object.isArray(response.data))
+					{
+						var	container	=$('#page-tasks ul'),
+							newRow		=null,
+							record		=null;
+						
+						container.html('');
+						for (var i= 0,j=response.data.length; i<j; i++)
+						{
+							record=response.data[i];
+							newRow=$
+							(
+								[
+									'<li>',
+										'<a href="task-steps.html#',record._id.$id,'">',moment(record.timestamp_created.sec*1000).format('MMMM Do YYYY, h:mm:ss a'),'</a>',
+									'</li>'
+								].join('')
+							);
+							newRow.click
+							(
+								function(record,event)
+								{
+									this.activeTask=record._id.$id;
+									$.mobile.navigate('task-steps.html');
+								}.bind(this,record)
+							);
+							container.append(newRow);
+						}
+						container.listview();
+					}
+				}.bind(this)
+			);
+		},
+		loadTaskSteps: function()
+		{
+			$.getJSON
+			(
+				this.getServerURL()+'task/getTaskSteps/'+this.activeTask,
+				function(response)
+				{
+					if (response.success)
+					{
+						var	container	=$('#page-task-steps fieldset'),
+							newRow		=null,
+							record		=null,
+							checked		='';
+						
+						container.html('');
+						for (var i= 0,j=response.data.steps.length; i<j; i++)
+						{
+							record=response.data.steps[i];
+							checked=(Number(record.properties.status)===0)?'':'checked';
+							container.append('<input type="checkbox" value="'+i+'" id="task-step-'+i+'" '+checked+'>');
+							container.append('<label for="task-step-'+i+'">'+record.properties.instruction+' ('+record.properties.address+')</label>');
+							
+//							newRow.click
+//							(
+//								function(record,event)
+//								{
+////									this.activeTask=record.id;
+//								}.bind(this,record)
+//							);
+						}
+						container.controlgroup();
+						
+						$('#page-task-steps fieldset input').change
+						(
+							function(event)
+							{
+								var target	=$(event.target),
+									checked	=Number(target.is(':checked')),
+									val		=target.val();
+								$.getJSON
+								(
+									this.getServerURL()+'task/setStepStatus/'+this.activeTask+'/'+val+'/'+checked,
+									function()
+									{
+										
+									}.bind(this)
+								);
+							}.bind(this)
+						)
+					}
+				}.bind(this)
+			);
+		},
 		
 		
 		
