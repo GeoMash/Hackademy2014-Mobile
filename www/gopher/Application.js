@@ -15,9 +15,9 @@ $JSKK.Class.create
 		USER_TYPE_OPERATOR:	2
 	},
 	{
-		stepCounter: 0,
 		map:		null,
 		userType:	null,
+		userId:		null,
 		init: function()
 		{
 			$(this.onReady.bind(this));
@@ -61,7 +61,7 @@ $JSKK.Class.create
 //							$('#left-panel').panel('open');
 //						}
 					}
-				}	
+				}
 			);
 			$('#andThen').on
 			(
@@ -70,25 +70,9 @@ $JSKK.Class.create
 			);
 			$.mobile.document.on('pagechange',this.onPageChange.bind(this));
 		},
-		onAndThen: function(event)
+		getUserId: function()
 		{
-			event.preventDefault();
-//			console.debug($(event.target.form[1]).val());
-			var address = $(event.target.form[0]).val();
-			var description = $(event.target.form[1]).val();
-			$('#requestForm').append
-			(
-				[
-					"<div data-role=\"collapsible\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\">",
-						"<h4>",address,"</h4>",
-						"<p>",description,"</p>",
-					"</div>"
-				].join("")
-			);
-			$('#collapsible'+this.stepCounter ).collapsible({ collapsed: true });
-			$('#description').val('');
-			$('#location').val('');
-			this.stepCounter++;
+			return this.userId;
 		},
 		selectUserType: function()
 		{
@@ -105,6 +89,7 @@ $JSKK.Class.create
 							click: function()
 							{
 								this.setUserType(this.$reflect('self').USER_TYPE_STANDARD);
+								this.userId='testUser1';
 							}.bind(this)
 						},
 						'Operator':
@@ -113,6 +98,7 @@ $JSKK.Class.create
 							click: function()
 							{
 								this.setUserType(this.$reflect('self').USER_TYPE_OPERATOR);
+								this.userId='testUser2';
 							}.bind(this)
 						}
 					}
@@ -155,7 +141,7 @@ $JSKK.Class.create
 		{
 			$.getJSON
 			(
-				'http://hack.dev.lan/notification/getByUserId/testUser1',
+				'http://hack.dev.lan/notification/getByUserId/'+this.getUserId(),
 				function(response)
 				{
 					console.debug(response);
