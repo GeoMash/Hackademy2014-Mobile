@@ -15,7 +15,8 @@ $JSKK.Class.create
 		USER_TYPE_OPERATOR:	2
 	},
 	{
-		serverURL:	'http://hack.dev.lan/',
+//		serverURL:	'http://hack.dev.lan/',
+		serverURL:	'http://oklah.geomash.com/',
 		stepCounter: 0,
 		steps: [],
 		map:		null,
@@ -36,8 +37,30 @@ $JSKK.Class.create
 			$('[data-role="header"] [data-icon="plus"]').css('right','45px').hide();
 			$('[data-role="header"] [data-icon]').css('top','12px').hide();
 			
-			this.map=new gopher.Map();
-			
+			if (navigator.geolocation)
+			{
+				navigator.geolocation.getCurrentPosition
+				(
+					function(position)	
+					{
+						this.map=new gopher.Map
+						(
+							[
+								position.coords.longitude,
+								position.coords.latitude
+							]
+						);
+					},
+					function()
+					{
+						this.map=new gopher.Map();
+					}
+				);
+			}
+			else
+			{
+				this.map=new gopher.Map();
+			}
 			if (navigator.splashscreen)
 			{
 				navigator.splashscreen.hide();
