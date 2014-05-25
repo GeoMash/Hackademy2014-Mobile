@@ -15,6 +15,8 @@ $JSKK.Class.create
 		USER_TYPE_OPERATOR:	2
 	},
 	{
+		stepCounter: 0,
+		steps: [],
 		map:		null,
 		userType:	null,
 		userId:		null,
@@ -61,7 +63,7 @@ $JSKK.Class.create
 //							$('#left-panel').panel('open');
 //						}
 					}
-				}
+				}	
 			);
 			$('#andThen').on
 			(
@@ -69,6 +71,89 @@ $JSKK.Class.create
 				this.onAndThen.bind(this)
 			);
 			$.mobile.document.on('pagechange',this.onPageChange.bind(this));
+			$('#finish').on
+			(
+				'click',
+				this.createRequest.bind(this)
+			);
+		},
+		onAndThen: function(event, close)
+		{
+			if(Object.isUndefined(close))
+			{
+				event.preventDefault();
+			}
+			var address = $(event.target.form[0]).val();
+			var description = $(event.target.form[1]).val();
+			var coordinates = [];
+
+			$.get
+			(
+				"http://maps.google.com/maps/api/geocode/json?address="+address.replace(' ', '+')+"&sensor=false&region=my", 
+				function(response)
+				{
+					console.debug(response);
+					var results = 
+					{
+						address: response.results[0].formatted_address,
+						coordinates: [response.results[0].geometry.location.lng, response.results[0].geometry.location.lat] 
+					}
+					if(Object.isString(results.address))
+					{
+						address=results.address;
+					}
+					coordinates = results.coordinates;
+					this.steps[this.stepCounter] = 
+					{	
+						GeoJSON:
+						{	
+							geometry: 
+							{
+								type:'Point',
+								coordinates: coordinates
+							},
+							properties:
+							{	
+								address: address,
+								instruction: description,
+								status: 0
+							}
+						}	
+					}	
+					$('#requestForm').append
+					(
+						[
+							"<div data-role=\"collapsible\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\">",
+								"<h4>",address,"</h4>",
+								"<p>",description,"</p>",
+							"</div>"
+						].join("")
+					);
+					$('#collapsible'+this.stepCounter ).collapsible({ collapsed: true });
+					$('#description').val('');
+					$('#location').val('');
+					this.stepCounter++;
+				}.bind(this)
+			);
+			console.debug(this.steps);
+		},
+		createRequest: function(event)
+		{
+			this.onAndThen(event ,true);
+			var task = 
+			{
+				user_id: this.getUserId(),
+				steps: this.steps
+			};
+			$.post
+			(
+				'http://hack.dev.lan/task/add',
+				task,
+				function(response)
+				{
+					console.debug(response);
+				}
+			);
 		},
 		getUserId: function()
 		{
@@ -144,7 +229,53 @@ $JSKK.Class.create
 				'http://hack.dev.lan/notification/getByUserId/'+this.getUserId(),
 				function(response)
 				{
-					console.debug(response);
+					if (response.success && Object.isArray(response.data))
+					{
+						var	container	=$('#page-notifications ul'),
+							newRow		=null,
+							record		=null;
+						
+						container.find('li:first .ui-li-count').html('Total: '+response.data.length);
+						for (var i= 0,j=response.data.length; i<j; i++)
+						{
+							record=response.data[i];
+							newRow=$
+							(
+								[
+									'<li>',
+										'<a href="#">',
+											'<h3>',record.title,'</h3>',
+											'<p><b>Description:</b> ',record.message,'</p>',
+											'<p class="ui-li-aside">',(record.read?'Read':'Unread'),'</p>',
+										'</a>',
+									'</li>'
+								].join('')
+							);
+							newRow.click
+							(
+								function(record,event)
+								{
+									event.preventDefault();
+									$('body').simpledialog2
+									(
+										{
+											mode:		'blank',
+											headerText:	'Details',
+											blankContent:
+											[
+												'<div role="main" class="ui-content">',
+													'<p><b>Step:</b> ',record.type.record.steps[record.step].properties.instruction,'</p>',
+													'<a rel="close" data-role="button" href="#">Close</a>',
+												'</div>'
+											].join('')
+										}
+									);
+								}.bind(this,record)
+							);
+							container.append(newRow);
+						}
+						container.listview();
+					}
 				}
 			);
 		},
