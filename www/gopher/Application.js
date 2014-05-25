@@ -146,6 +146,7 @@ $JSKK.Class.create
 							{
 								this.setUserType(this.$reflect('self').USER_TYPE_STANDARD);
 								this.userId='testUser1';
+								$('#nav-payments').show();
 							}.bind(this)
 						},
 						'Operator':
@@ -155,6 +156,7 @@ $JSKK.Class.create
 							{
 								this.setUserType(this.$reflect('self').USER_TYPE_OPERATOR);
 								this.userId='testUser2';
+								$('#nav-payments').hide();
 							}.bind(this)
 						}
 					}
