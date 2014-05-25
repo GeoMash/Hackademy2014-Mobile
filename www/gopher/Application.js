@@ -88,8 +88,9 @@ $JSKK.Class.create
 		{
 			event.preventDefault();
 			console.debug('#collapsible'+event.target.name);
-			$('#requestForm').removeChild(document.getElementById('collapsible'+event.target.name));
-			
+			// $('#requestForm').removeChild(document.getElementById('collapsible'+event.target.name));
+  			$('#task-wrapper'+event.target.name).remove();
+			$( "#newRequest" ).popup( "reposition", "center" );	
 		},
 		onAndThen: function(event, close)
 		{
@@ -137,18 +138,19 @@ $JSKK.Class.create
 					$('#requestForm').append
 					(
 						[
-							"<div class=\"ui-grid-a\">",
-							"<div class=\"ui-block-a\"><div data-role=\"collapsible\" style=\"width:90%\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\" data-inline=true>",
+							"<div id=\"task-wrapper",this.stepCounter,"\" class=\"ui-grid-a\">",
+							"<div class=\"ui-block-a\"><div data-role=\"collapsible\" id=\"collapsible",this.stepCounter,"\" data-collapsed-icon=\"carat-d\" data-expanded-icon=\"carat-u\" data-inline=true>",
 								"<h4>",address,"</h4>",
 								"<p>",description,"</p>",
 							"</div></div>",
-							"<div class=\"ui-block-b\"><button id=\"remove\" name=",this.stepCounter," style=\"width:8%\" class=\"ui-btn ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-inline\">remove</button></div>",
+							"<div class=\"ui-block-b\"><button id=\"remove\" name=",this.stepCounter," class=\"ui-btn ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-inline\">remove</button></div>",
 							"</div>"
 						].join("")
 					);
 					$('#collapsible'+this.stepCounter ).collapsible({ collapsed: true });
 					$('#description').val('');
 					$('#location').val('');
+					$( "#newRequest" ).popup( "reposition", "center" );
 					this.stepCounter++;
 				}.bind(this)
 			);
